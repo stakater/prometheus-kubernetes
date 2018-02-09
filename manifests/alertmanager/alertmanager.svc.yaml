@@ -1,8 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
+ annotations:
+    fabric8.io/ingress.path: /alertmanager
+    fabric8.io/ingress.annotations: |-
+      ingress.kubernetes.io/rewrite-target: /
+      ingress.kubernetes.io/force-ssl-redirect: true
+      kubernetes.io/ingress.class: internal-ingress
   labels:
     alertmanager: main
+    expose: "true"
   name: alertmanager-main
 spec:
   ports:
